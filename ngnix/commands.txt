@@ -1,0 +1,38 @@
+Comandos utilizados para la ejecucion:
+
+/* ==================== [forever] ====================*/
+
+//Verificando estado del servidor con 'forever':
+
+forever start index.js --watch 
+forever list 
+forever stop index.js
+
+/* ==================== [nginx] ====================*/
+//Iniciando con nginx y kuegp verificando:
+
+tasklist /fi "imagename eq nginx.exe"
+
+/* ==================== [nginx con pm2] ====================*/
+
+pm2 list 
+
+//Comandos a ejecutar con argumentos a enviarse para que sean ejecutados en el servidor
+
+/*caso_1: conf_1*/
+//modo fork:
+pm2 start index.js --name="server_1" --watch -- 8080
+
+//modo cluster:
+pm2 start index.js --name="server_2" --watch -- 8081 -i max
+
+
+/*caso_2: conf_2*/
+//modo fork:
+pm2 start index.js --name="server_1" --watch -- 8080 
+
+//modo cluster:
+pm2 start index.js --name="server_2" --watch -- 8082 -i max 
+pm2 start index.js --name="server_2" --watch -- 8083 -i max
+pm2 start index.js --name="server_2" --watch -- 8084 -i max
+pm2 start index.js --name="server_2" --watch -- 8085 -i max
